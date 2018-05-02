@@ -32,6 +32,7 @@ class Translator(object):
         rlt = []
         if resp_json.get('sentences'):
             for stc in resp_json.get('sentences'):
-                rlt.append(stc['trans'])
+                if stc.get('trans'):
+                    rlt.append(stc.get('trans'))
 
-        self.nvim.command('echo "{0}"'.format(','.join(rlt)))
+        self.nvim.command('echo "{0}"'.format(''.join(rlt)))
